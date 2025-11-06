@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
-import SidebarAdmin from "@/components/ui/admin/SidebarADmin";
+import SidebarAdmin from "@/components/ui/admin/SidebarAdmin";
 import HeaderBarAdmin_Problem from "@/components/ui/admin/HeaderBarAdmin_Problem";
 import WelcomeSectionStudent_upload from "@/components/ui/admin/WelcomeSectionStudent_upload";
 import StudentUploadBox from "@/components/ui/admin/StudentUploadBox";
