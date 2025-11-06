@@ -1,0 +1,222 @@
+/* ===== Webfont (ยังคงไว้ตามเดิม เผื่อเรียกใช้เฉพาะจุด) ===== */
+@font-face {
+  font-family: 'PKPhrae';
+  src: url('/fonts/PKPhrae.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Tailwind (ตามเดิม) */
+@import "tailwindcss";
+
+/* ===== CSS Variables (ตามเดิม) ===== */
+:root {
+  --background: #000000;
+  --foreground: #171717;
+}
+
+/* ===== ใช้ Kanit เป็นฟอนต์หลักของระบบ =====
+   - layout.js ได้ใส่ตัวแปร --font-kanit จาก next/font/google แล้ว
+   - ตั้งค่า --font-sans ให้ชี้ไปที่ --font-kanit เพื่อให้ยูทิลิตี้ sans ของ Tailwind ใช้ Kanit
+*/
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-kanit);        /* ✅ เปลี่ยนมาใช้ Kanit เป็นค่าเริ่มต้น */
+  --font-mono: var(--font-geist-mono);
+}
+
+/* โหมดมืด (ตามเดิม) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #f5f5f5;
+    --foreground: #000000;
+  }
+}
+
+/* ===== Global base (เปลี่ยนเฉพาะฟอนต์ให้เป็น Kanit) ===== */
+html, body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-kanit), 'Kanit', system-ui, sans-serif; /* ✅ Kanit ทั่วทั้งเว็บ */
+}
+
+/* ===== Utility เดิม (คงไว้) ===== */
+.input {
+  @apply border rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent;
+}
+
+/* ปุ่มสีเขียว (คงไว้) */
+.button-green {
+  background-color: #ffffff;
+  border: 1px solid #00A991;
+  color: #00A991;
+}
+.button-green:hover {
+  background-color: #00A991;
+  color: #ffffff;
+}
+
+/* (ตัวเลือก) คลาสเรียกใช้ PKPhrae เฉพาะจุด */
+.font-pkphrae {
+  font-family: 'PKPhrae', system-ui, sans-serif;
+}
+
+/* โครงหน้า + responsive */
+.register-page {
+  max-width: 520px;
+  margin: 2.5rem auto;
+  padding: 0 1rem;
+}
+
+.page-title {
+  font-weight: 600;
+  color: #006B5A;
+  font-size: clamp(1.25rem, 1.2vw + 1rem, 1.75rem);
+  line-height: 1.3;
+  margin-bottom: 1.25rem;
+  text-align: center;
+  word-break: keep-all;
+}
+
+/* ฟอร์ม */
+.register-form {
+  background: #fff;
+  border: 1px solid #e7e7e7;
+  border-radius: 12px;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  box-shadow: 0 2px 14px rgba(0,0,0,0.04);
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.form-row label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.form-row input {
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  padding: 0.7rem 0.9rem;
+  font-size: clamp(0.95rem, 0.3vw + 0.85rem, 1rem);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.form-row input:focus {
+  border-color: #00a77f;
+  box-shadow: 0 0 0 3px rgba(125, 214, 169, 0.12);
+}
+
+/* password group */
+.pw-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.pw-toggle {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: #39648E;
+  padding: 0.2rem 0.4rem;
+}
+
+.hint {
+  color: #7a7a7a;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+/* alerts */
+.alert {
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  margin: 0.5rem 0 0.75rem;
+  font-size: 0.9rem;
+}
+
+.alert.error {
+  background: #fff5f5;
+  border: 1px solid #ffc9c9;
+  color: #b42318;
+}
+
+.alert.success {
+  background: #f4fff7;
+  border: 1px solid #bff0c7;
+  color: #16794b;
+}
+
+/* ปุ่ม submit */
+.submit-btn {
+  width: 100%;
+  background: #00a77f;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.05s ease, opacity 0.15s ease, background 0.2s ease;
+}
+
+.submit-btn:hover { background: #055e4b; }
+.submit-btn:active { transform: translateY(1px); }
+.submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* แถบข้อความช่วยนำทาง */
+.register-hint-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.75rem;
+}
+
+.register-hint-text {
+  margin: 0.25rem 0;
+  font-size: 0.85rem;
+  color: #000;
+  text-align: center;
+}
+
+.register-hint-link {
+  color: #00a77f;
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 0.25rem;
+}
+.register-hint-link:hover {
+  color: #00755a;
+  text-decoration: underline;
+}
+
+/* mobile spacing */
+@media (max-width: 600px) {
+  .register-page { margin: 1.5rem auto; }
+  .register-form { padding: 1rem; }
+}
+
+
+/* ===== กรอบสีรอบกล่องตามภาพ ===== */
+.border-black  { border: 3px solid #000; }
+.border-orange { border: 3px solid #FF928A; }
+.border-green  { border: 3px solid #00A991; }
+.border-brown  { border: 3px solid #7B5B42; }
+.border-yellow { border: 3px solid #F9D85E; }
+.border-purple { border: 3px solid #8B5CF6; }
+/* .border-cyan จะใส่ใน StatusPanelCard ผ่าน style jsx ของมันเอง */
